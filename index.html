@@ -9,30 +9,42 @@
 <body>
   <header>
     <h1>Welkom bij IMN Media!</h1>
-    <p>Volg me op X voor updates: 
-      <a href="https://x.com/Matthias_GRNL" target="_blank">@Matthias_GRNL</a>
-    </p>
+    <p>Voor snelle updates en meer media, kijk op <a href="https://x.com/Matthias_GRNL?t=TGz8SXONSfHQsYJ49KCWQw&s=09" target="_blank">@Matthias_GRNL</a></p>
   </header>
 
   <main>
-    <!-- Login -->
-    <section id="loginSection">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Wachtwoord">
-      <button id="signupBtn">Registreren</button>
-      <button id="loginBtn">Inloggen</button>
-      <button id="logoutBtn">Uitloggen</button>
+    <!-- Nieuws sectie -->
+    <section id="newsSection">
+      <h2>Belangrijkste gebeurtenissen van vandaag (25 oktober 2025)</h2>
+      <ul>
+        <li><strong>UCI Wereldkampioenschappen baanwielrennen 2025:</strong> Nederland domineert met meerdere gouden medailles, waaronder Harrie Lavreysen's 18e wereldtitel in de Keirin. <a href="https://www.cyclingweekly.com/racing/uci-track-world-championships-everything-you-need-to-know" target="_blank">Lees meer</a></li>
+        <li><strong>Art Basel Parijs 2025:</strong> De kunstbeurs trekt wereldwijd aandacht met tentoonstellingen van onder andere Modigliani en Louise Bourgeois. <a href="https://www.voguebusiness.com/story/fashion/art-basel-paris-2025-cheat-sheet" target="_blank">Lees meer</a></li>
+        <li><strong>Trump's renovatie van het Witte Huis:</strong> President Trump laat de oostvleugel slopen voor een nieuwe balzaal van $300 miljoen, wat leidt tot controverse. <a href="https://www.reuters.com/world/us/bulldozer-ballroom-trump-makes-his-mark-white-house-2025-10-25/" target="_blank">Lees meer</a></li>
+      </ul>
     </section>
 
-    <!-- Reactieformulier -->
-    <section id="commentSection" style="display:none;">
-      <input type="text" id="message" placeholder="Typ je reactie...">
-      <button id="addCommentBtn">Plaats reactie</button>
+    <!-- Suggestiebox -->
+    <section id="suggestionBox">
+      <h2>Heb je een suggestie?</h2>
+      <textarea id="suggestionInput" placeholder="Typ je suggestie hier..."></textarea>
+      <button id="submitSuggestion">Verstuur Suggestie</button>
     </section>
 
-    <!-- Reacties -->
-    <section id="commentsContainer"></section>
+    <!-- Reacties sectie -->
+    <section id="commentsSection">
+      <h2>Reacties</h2>
+      <div id="commentsContainer"></div>
+      <input type="text" id="commentInput" placeholder="Schrijf een reactie...">
+      <button id="postCommentBtn">Plaats reactie</button>
+    </section>
   </main>
+
+  <footer>
+    <nav>
+      <a href="#privacy">Privacy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </footer>
 
   <script type="module" src="script.js"></script>
 </body>
