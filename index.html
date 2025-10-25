@@ -7,32 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welkom bij IMN Media!</h1>
+  <header>
+    <h1>Welkom bij IMN Media!</h1>
+    <p>Volg me op X voor updates: 
+      <a href="https://x.com/jouwgebruikersnaam" target="_blank">@jouwgebruikersnaam</a>
+    </p>
+  </header>
 
-  <!-- X-snelkoppeling -->
-  <p>Volg me op X voor updates: 
-    <a href="https://x.com/jouwgebruikersnaam" target="_blank">@jouwgebruikersnaam</a>
-  </p>
+  <main>
+    <!-- Login -->
+    <section id="loginSection">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Wachtwoord">
+      <button id="signupBtn">Registreren</button>
+      <button id="loginBtn">Inloggen</button>
+      <button id="logoutBtn">Uitloggen</button>
+    </section>
 
-  <!-- Login -->
-  <div id="loginForm">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Wachtwoord">
-    <button id="signupBtn">Registreren</button>
-    <button id="loginBtn">Inloggen</button>
-    <button id="logoutBtn">Uitloggen</button>
-  </div>
+    <!-- Reactieformulier -->
+    <section id="commentSection" style="display:none;">
+      <input type="text" id="message" placeholder="Typ je reactie...">
+      <button id="addCommentBtn">Plaats reactie</button>
+    </section>
 
-  <!-- Reactieformulier -->
-  <div id="commentForm" style="display:none;">
-    <input type="text" id="message" placeholder="Typ je reactie...">
-    <button id="addCommentBtn">Plaats reactie</button>
-  </div>
+    <!-- Reacties -->
+    <section id="commentsContainer"></section>
+  </main>
 
-  <!-- Reacties -->
-  <div id="comments"></div>
-
-  <!-- Firebase SDKs -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
