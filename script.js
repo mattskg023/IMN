@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebas
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, increment, query, orderBy } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-// Firebase config
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyDveuYd3_bfqSuMOeBnVrIw4u2mg9TWLZ4",
   authDomain: "imn-media.firebaseapp.com",
@@ -18,7 +18,7 @@ const db = getFirestore(app);
 
 const commentsCol = collection(db, "comments");
 
-// DOM elements
+// DOM Elements
 const signupBtn = document.getElementById('signupBtn');
 const loginBtn = document.getElementById('loginBtn');
 const logoutBtn = document.getElementById('logoutBtn');
@@ -28,6 +28,7 @@ const commentsContainer = document.getElementById('commentsContainer');
 const submitSuggestion = document.getElementById('submitSuggestion');
 const suggestionInput = document.getElementById('suggestionInput');
 
+// Auth
 signupBtn.addEventListener('click', async () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -44,26 +45,6 @@ loginBtn.addEventListener('click', async () => {
 
 logoutBtn.addEventListener('click', async () => { await signOut(auth); });
 
-postCommentBtn.addEventListener('click', async () => {
-  const user = auth.currentUser;
-  if(!user) return alert('You must be logged in to comment!');
-  if(commentInput.value.trim() === '') return alert('Type a comment!');
-  await addDoc(commentsCol, {
-    email: user.email,
-    text: commentInput.value.trim(),
-    timestamp: Date.now(),
-    likes: 0
-  });
-  commentInput.value = '';
-  loadComments();
-});
-
-submitSuggestion.addEventListener('click', () => {
-  if(suggestionInput.value.trim() === '') return alert('Type a suggestion!');
-  alert('Suggestion submitted: ' + suggestionInput.value);
-  suggestionInput.value = '';
-});
-
 // Load comments
 async function loadComments() {
   const q = query(commentsCol, orderBy('timestamp', 'desc'));
@@ -75,18 +56,52 @@ async function loadComments() {
     div.className = 'comment';
     div.innerHTML = `
       <b>${data.email.split('@')[0]}</b>: ${data.text}
-      <span class="likeBtn" onclick="likeComment('${docSnap.id}', this)">👍 ${data.likes}</span>
+      <span class="likeBtn" onclick="likeComment('${docSnap.id}', this)">👍 ${data.likes || 0}</span>
+      <span class="dislikeBtn" onclick="dislikeComment('${docSnap.id}', this)">👎 ${data.dislikes || 0}</span>
     `;
     commentsContainer.appendChild(div);
   });
 }
 
+// Post comment
+postCommentBtn.addEventListener('click', async () => {
+  const user = auth.currentUser;
+  if(!user) return alert('You must be logged in to comment!');
+  if(commentInput.value.trim() === '') return alert('Type a comment!');
+  await addDoc(commentsCol, {
+    email: user.email,
+    text: commentInput.value.trim(),
+    timestamp: Date.now(),
+    likes: 0,
+    dislikes: 0
+  });
+  commentInput.value = '';
+  loadComments();
+});
+
+// Like/Dislike comment
 window.likeComment = async (id, element) => {
   const docRef = doc(db, "comments", id);
   await updateDoc(docRef, { likes: increment(1) });
   element.classList.add('liked');
   loadComments();
 };
+
+window.dislikeComment = async (id, element) => {
+  const docRef = doc(db, "comments", id);
+  await updateDoc(docRef, { dislikes: increment(1) });
+  element.classList.add('disliked');
+  loadComments();
+};
+
+// Suggestion Box
+submitSuggestion.addEventListener('click', async () => {
+  if(suggestionInput.value.trim() === '') return alert('Type a suggestion!');
+  const suggestionsCol = collection(db, "suggestions");
+  await addDoc(suggestionsCol, { text: suggestionInput.value.trim(), timestamp: Date.now() });
+  alert('Suggestion submitted: ' + suggestionInput.value);
+  suggestionInput.value = '';
+});
 
 // Listen for auth changes
 onAuthStateChanged(auth, user => {
