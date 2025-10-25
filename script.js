@@ -1,78 +1,95 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, increment, query, orderBy } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-// Firebase configuratie
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDveuYd3_bfqSuMOeBnVrIw4u2mg9TWLZ4",
   authDomain: "imn-media.firebaseapp.com",
   projectId: "imn-media",
-  storageBucket: "imn-media.firebasestorage.app",
+  storageBucket: "imn-media.appspot.com",
   messagingSenderId: "1053700852775",
   appId: "1:1053700852775:web:cde18dca2d0e5fe3231202"
 };
 
-// Initialiseer Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// DOM-elementen
-const commentInput = document.getElementById('commentInput');
-const postCommentBtn = document.getElementById('postCommentBtn');
-const commentsContainer = document.getElementById('commentsContainer');
-const suggestionInput = document.getElementById('suggestionInput');
-const submitSuggestion = document.getElementById('submitSuggestion');
+const commentsCol = collection(db, "comments");
 
-// Functie om reacties op te halen en weer te geven
+// DOM elements
+const signupBtn = document.getElementById('signupBtn');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const postCommentBtn = document.getElementById('postCommentBtn');
+const commentInput = document.getElementById('commentInput');
+const commentsContainer = document.getElementById('commentsContainer');
+const submitSuggestion = document.getElementById('submitSuggestion');
+const suggestionInput = document.getElementById('suggestionInput');
+
+signupBtn.addEventListener('click', async () => {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  try { await createUserWithEmailAndPassword(auth, email, password); alert('Account created!'); }
+  catch(e){ alert(e.message); }
+});
+
+loginBtn.addEventListener('click', async () => {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  try { await signInWithEmailAndPassword(auth, email, password); }
+  catch(e){ alert(e.message); }
+});
+
+logoutBtn.addEventListener('click', async () => { await signOut(auth); });
+
+postCommentBtn.addEventListener('click', async () => {
+  const user = auth.currentUser;
+  if(!user) return alert('You must be logged in to comment!');
+  if(commentInput.value.trim() === '') return alert('Type a comment!');
+  await addDoc(commentsCol, {
+    email: user.email,
+    text: commentInput.value.trim(),
+    timestamp: Date.now(),
+    likes: 0
+  });
+  commentInput.value = '';
+  loadComments();
+});
+
+submitSuggestion.addEventListener('click', () => {
+  if(suggestionInput.value.trim() === '') return alert('Type a suggestion!');
+  alert('Suggestion submitted: ' + suggestionInput.value);
+  suggestionInput.value = '';
+});
+
+// Load comments
 async function loadComments() {
-  const querySnapshot = await getDocs(collection(db, 'comments'));
+  const q = query(commentsCol, orderBy('timestamp', 'desc'));
+  const snapshot = await getDocs(q);
   commentsContainer.innerHTML = '';
-  querySnapshot.forEach(doc => {
-    const comment = doc.data();
-    const commentElement = document.createElement('div');
-    commentElement.textContent = `${comment.email}: ${comment.text}`;
-    commentsContainer.appendChild(commentElement);
+  snapshot.forEach(docSnap => {
+    const data = docSnap.data();
+    const div = document.createElement('div');
+    div.className = 'comment';
+    div.innerHTML = `
+      <b>${data.email.split('@')[0]}</b>: ${data.text}
+      <span class="likeBtn" onclick="likeComment('${docSnap.id}', this)">👍 ${data.likes}</span>
+    `;
+    commentsContainer.appendChild(div);
   });
 }
 
-// Functie om een nieuwe reactie toe te voegen
-async function addComment() {
-  if (commentInput.value.trim() !== '') {
-    const user = auth.currentUser;
-    if (user) {
-      await addDoc(collection(db, 'comments'), {
-        email: user.email,
-        text: commentInput.value.trim(),
-        timestamp: new Date()
-      });
-      commentInput.value = '';
-      loadComments();
-    } else {
-      alert('Je moet ingelogd zijn om een reactie te plaatsen.');
-    }
-  }
-}
+window.likeComment = async (id, element) => {
+  const docRef = doc(db, "comments", id);
+  await updateDoc(docRef, { likes: increment(1) });
+  element.classList.add('liked');
+  loadComments();
+};
 
-// Functie om suggestie op te slaan
-function saveSuggestion() {
-  if (suggestionInput.value.trim() !== '') {
-    alert('Suggestie verstuurd: ' + suggestionInput.value);
-    suggestionInput.value = '';
-  } else {
-    alert('Vul een suggestie in.');
-  }
-}
-
-// Event listeners
-postCommentBtn.addEventListener('click', addComment);
-submitSuggestion.addEventListener('click', saveSuggestion);
-
-// Authentificatie status controleren
+// Listen for auth changes
 onAuthStateChanged(auth, user => {
-  if (user) {
-    loadComments();
-  } else {
-    commentsContainer.innerHTML = '<p>Log in om reacties te zien.</p>';
-  }
+  if(user) loadComments();
 });
+
