@@ -1,56 +1,82 @@
+/* Algemeen */
 body {
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #1da1f2;
+  color: white;
   padding: 20px;
-  background-color: #f7f7f7;
+  text-align: center;
 }
 
-h1 {
-  color: #333;
-}
-
-a {
-  color: #1da1f2;
+header a {
+  color: #fff;
+  font-weight: bold;
   text-decoration: none;
 }
 
-a:hover {
+header a:hover {
   text-decoration: underline;
 }
 
-#loginForm, #commentForm {
-  margin-bottom: 20px;
+/* Main layout */
+main {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
+/* Formulieren */
 input {
-  padding: 8px;
-  margin-right: 5px;
-  border-radius: 4px;
+  padding: 10px;
+  margin: 5px 5px 10px 0;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+  box-sizing: border-box;
 }
 
 button {
-  padding: 8px 12px;
+  padding: 10px 15px;
+  margin: 5px 5px 10px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #1da1f2;
   color: white;
+  font-weight: bold;
 }
 
 button:hover {
   background-color: #0d8ddb;
 }
 
+/* Commentaar */
 .comment {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
   background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.comment b {
+  color: #1da1f2;
 }
 
 .likes {
   cursor: pointer;
   color: #1da1f2;
   font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.likes.liked {
+  color: #ff4500;
 }
