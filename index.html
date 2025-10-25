@@ -9,11 +9,20 @@
 <body>
   <!-- Header -->
   <header>
-    <h1>IMN Media</h1>
-    <p>For quick updates and more media, check <a href="https://x.com/Matthias_GRNL?t=TGz8SXONSfHQsYJ49KCWQw&s=09" target="_blank">@Matthias_GRNL</a></p>
+    <div class="header-left">
+      <h1>IMN</h1>
+      <p>Independent Media Network</p>
+    </div>
+    <div class="header-right">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button id="signupBtn">Sign Up</button>
+      <button id="loginBtn">Log In</button>
+      <button id="logoutBtn">Log Out</button>
+    </div>
   </header>
 
-  <!-- Main content -->
+  <!-- Main Content -->
   <main>
     <!-- News Section -->
     <section id="newsSection">
@@ -25,40 +34,38 @@
       </ul>
     </section>
 
-    <!-- Suggestion Box -->
-    <section id="suggestionBox">
-      <h2>Have a suggestion?</h2>
-      <textarea id="suggestionInput" placeholder="Type your suggestion here..."></textarea>
-      <button id="submitSuggestion">Submit Suggestion</button>
+    <!-- X Account Link -->
+    <section id="xSection">
+      <p>For quick updates and more media, check <a href="https://x.com/Matthias_GRNL?t=TGz8SXONSfHQsYJ49KCWQw&s=09" target="_blank">@Matthias_GRNL</a></p>
     </section>
 
-    <!-- Login Section -->
-    <section id="loginSection">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Password">
-      <button id="signupBtn">Sign Up</button>
-      <button id="loginBtn">Log In</button>
-      <button id="logoutBtn">Log Out</button>
-    </section>
-
-    <!-- Comments Section -->
-    <section id="commentsSection">
-      <h2>Comments</h2>
+    <!-- Posts and Comments Section -->
+    <section id="postsSection">
+      <h2>Posts & Comments</h2>
       <div id="commentsContainer"></div>
       <input type="text" id="commentInput" placeholder="Write a comment...">
       <button id="postCommentBtn">Post Comment</button>
+    </section>
+
+    <!-- Suggestion Box -->
+    <section id="suggestionBox">
+      <h2>Submit a Topic</h2>
+      <textarea id="suggestionInput" placeholder="Type your suggestion here..."></textarea>
+      <button id="submitSuggestion">Submit Your Idea</button>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    <nav>
-      <a href="#privacy">Privacy</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="footer-left">
+      <p>Our mission: understand both sides of a conflict and give an opinion</p>
+    </div>
+    <div class="footer-right">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#contact">Contact Us</a>
+    </div>
   </footer>
 
   <script type="module" src="script.js"></script>
 </body>
 </html>
-
