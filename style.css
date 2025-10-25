@@ -1,4 +1,4 @@
-/* Algemeen */
+/* Algemene opmaak */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,76 +7,66 @@ body {
 }
 
 header {
-  background-color: #1da1f2;
+  background-color: #333;
   color: white;
   padding: 20px;
   text-align: center;
 }
 
 header a {
-  color: #fff;
-  font-weight: bold;
+  color: #ff9900;
   text-decoration: none;
 }
 
-header a:hover {
-  text-decoration: underline;
-}
-
-/* Main layout */
 main {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 0 15px;
+  padding: 20px;
 }
 
-/* Formulieren */
-input {
+section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+textarea, input[type="text"] {
+  width: 100%;
   padding: 10px;
-  margin: 5px 5px 10px 0;
+  margin-top: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  width: calc(100% - 22px);
-  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 button {
-  padding: 10px 15px;
-  margin: 5px 5px 10px 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #1da1f2;
+  background-color: #333;
   color: white;
-  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #0d8ddb;
+  background-color: #555;
 }
 
-/* Commentaar */
-.comment {
-  background-color: white;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: right;
 }
 
-.comment b {
-  color: #1da1f2;
+footer a {
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
 }
 
-.likes {
-  cursor: pointer;
-  color: #1da1f2;
-  font-weight: bold;
-  margin-top: 5px;
-  display: inline-block;
-  transition: color 0.2s;
-}
-
-.likes.liked {
-  color: #ff4500;
+footer a:hover {
+  text-decoration: underline;
 }
