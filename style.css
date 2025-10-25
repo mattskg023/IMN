@@ -63,7 +63,7 @@ section {
 }
 
 /* Inputs & Textareas */
-input[type="text"], textarea {
+input[type="text"], input[type="email"], textarea {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -95,15 +95,26 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.likeBtn {
+.likeBtn, .dislikeBtn {
   cursor: pointer;
-  color: #1da1f2;
   font-weight: bold;
   margin-left: 10px;
 }
 
+.likeBtn {
+  color: #1da1f2;
+}
+
 .likeBtn.liked {
   color: #ff4500;
+}
+
+.dislikeBtn {
+  color: #888;
+}
+
+.dislikeBtn.disliked {
+  color: #ff0000;
 }
 
 /* Footer */
