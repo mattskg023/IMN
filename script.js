@@ -20,27 +20,22 @@ const auth = getAuth(app);
 const commentsCol = collection(db, "comments");
 
 // Buttons
-const signupBtn = document.getElementById('signupBtn');
-const loginBtn = document.getElementById('loginBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-const addCommentBtn = document.getElementById('addCommentBtn');
-
-signupBtn.addEventListener('click', signup);
-loginBtn.addEventListener('click', login);
-logoutBtn.addEventListener('click', logout);
-addCommentBtn.addEventListener('click', addComment);
+document.getElementById('signupBtn').addEventListener('click', signup);
+document.getElementById('loginBtn').addEventListener('click', login);
+document.getElementById('logoutBtn').addEventListener('click', logout);
+document.getElementById('addCommentBtn').addEventListener('click', addComment);
 
 // Check login state
 onAuthStateChanged(auth, user => {
   if(user) {
-    document.getElementById('commentForm').style.display = 'block';
+    document.getElementById('commentSection').style.display = 'block';
   } else {
-    document.getElementById('commentForm').style.display = 'none';
+    document.getElementById('commentSection').style.display = 'none';
   }
   loadComments();
 });
 
-// Functions
+// Signup
 async function signup() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -50,6 +45,7 @@ async function signup() {
   } catch(e) { alert(e.message); }
 }
 
+// Login
 async function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -58,10 +54,12 @@ async function login() {
   } catch(e) { alert(e.message); }
 }
 
+// Logout
 async function logout() {
   await signOut(auth);
 }
 
+// Add comment
 async function addComment() {
   const user = auth.currentUser;
   const message = document.getElementById('message').value;
@@ -77,10 +75,11 @@ async function addComment() {
   loadComments();
 }
 
+// Load comments
 async function loadComments() {
   const q = query(commentsCol, orderBy("timestamp", "desc"));
   const snapshot = await getDocs(q);
-  const container = document.getElementById('comments');
+  const container = document.getElementById('commentsContainer');
   container.innerHTML = '';
   snapshot.forEach(docSnap => {
     const data = docSnap.data();
@@ -88,14 +87,16 @@ async function loadComments() {
     div.className = 'comment';
     div.innerHTML = `
       <b>${data.username}</b>: ${data.message} <br>
-      <span class="likes" onclick="likeComment('${docSnap.id}')">👍 ${data.likes}</span>
+      <span class="likes" onclick="likeComment('${docSnap.id}', this)">👍 ${data.likes}</span>
     `;
     container.appendChild(div);
   });
 }
 
-window.likeComment = async (id) => {
+// Like comment
+window.likeComment = async (id, element) => {
   const docRef = doc(db, "comments", id);
   await updateDoc(docRef, { likes: increment(1) });
+  element.classList.add('liked');
   loadComments();
 };
