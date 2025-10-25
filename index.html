@@ -1,73 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>IMN – Independent Media Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMN Media</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h1>Welkom bij IMN Media!</h1>
 
-  <!-- Header -->
-  <header>
-    <div class="header-left">
-      <h1>IMN</h1>
-      <p>Independent Media Network</p>
-    </div>
-    <div class="header-right">
-      <button id="login-btn">Login</button>
-    </div>
-  </header>
+  <!-- X-snelkoppeling -->
+  <p>Volg me op X voor updates: 
+    <a href="https://x.com/jouwgebruikersnaam" target="_blank">@jouwgebruikersnaam</a>
+  </p>
 
-  <!-- Intro -->
-  <section id="intro">
-    <p>Welcome to IMN, your source for independent perspectives on global events. Read daily updates and submit your ideas!</p>
-  </section>
+  <!-- Login -->
+  <div id="loginForm">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Wachtwoord">
+    <button id="signupBtn">Registreren</button>
+    <button id="loginBtn">Inloggen</button>
+    <button id="logoutBtn">Uitloggen</button>
+  </div>
 
-  <!-- Articles -->
-  <section id="articles">
-    <h2>Today's Highlights</h2>
-    <article>
-      <h3>Example Article 1</h3>
-      <p>Summary of a current event. <a href="#">Read More</a></p>
-      <div class="votes">
-        <button class="upvote">👍</button>
-        <span class="count">0</span>
-        <button class="downvote">👎</button>
-      </div>
-    </article>
-    <article>
-      <h3>Example Article 2</h3>
-      <p>Summary of another current event. <a href="#">Read More</a></p>
-      <div class="votes">
-        <button class="upvote">👍</button>
-        <span class="count">0</span>
-        <button class="downvote">👎</button>
-      </div>
-    </article>
-  </section>
+  <!-- Reactieformulier -->
+  <div id="commentForm" style="display:none;">
+    <input type="text" id="message" placeholder="Typ je reactie...">
+    <button id="addCommentBtn">Plaats reactie</button>
+  </div>
 
-  <!-- Submit Form (Footer middle) -->
-  <footer>
-    <div class="footer-left">
-      <p>Our mission: Understand both sides of a conflict and provide an opinion</p>
-    </div>
+  <!-- Reacties -->
+  <div id="comments"></div>
 
-    <div class="footer-middle">
-      <h3>Submit a Topic</h3>
-      <form action="https://formspree.io/f/xpwoaaqj" method="POST">
-        <input type="text" name="name" placeholder="Name (optional)">
-        <input type="email" name="email" placeholder="Email (optional)">
-        <textarea name="message" placeholder="Topic / Idea"></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
-    <div class="footer-right">
-      <p><a href="#" id="privacy-link">Privacy Policy</a></p>
-      <p><a href="mailto:matthiasmunnikchrontsiou@gmail.com">Contact Us</a></p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <!-- Firebase SDKs -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
