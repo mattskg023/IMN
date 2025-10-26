@@ -102,6 +102,30 @@ submitSuggestion.addEventListener('click', async () => {
   alert('Suggestion submitted: ' + suggestionInput.value);
   suggestionInput.value = '';
 });
+<script>
+document.getElementById('topicForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const statusMsg = document.getElementById('statusMsg');
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    statusMsg.textContent = "✅ Your topic has been sent successfully!";
+    statusMsg.style.color = "#00ff99";
+    form.reset();
+  } else {
+    statusMsg.textContent = "❌ Something went wrong. Please try again later.";
+    statusMsg.style.color = "#ff5555";
+  }
+});
+</script>
 
 // Listen for auth changes
 onAuthStateChanged(auth, user => {
