@@ -1,6 +1,6 @@
 body {
-  background-color: white; /* standaard wit */
-  color: white; /* tekst wit */
+  background-color: black; /* background black */
+  color: white; /* all text white */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -19,12 +19,6 @@ header a {
   text-decoration: none;
 }
 
-.top-right button {
-  font-size: 20px;
-  cursor: pointer;
-  margin-right: 15px;
-}
-
 main {
   padding: 20px;
 }
@@ -34,7 +28,7 @@ main {
 }
 
 .news-item {
-  background-color: #111; /* donkergrijs voor kopjes etc */
+  background-color: #111;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -42,18 +36,18 @@ main {
 }
 
 .news-item h3 {
-  color: #333; /* kopjes donkergrijs */
+  color: #666; /* headings dark gray */
 }
 
 .submit-section {
-  background-color: #111; /* donkere secties zwart/zwart blijft */
+  background-color: #111;
   padding: 20px;
   border-radius: 10px;
   margin: 20px 0;
 }
 
 .submit-section h2 {
-  color: #333; /* kopjes donkergrijs */
+  color: #666; /* headings dark gray */
 }
 
 .submit-section input,
