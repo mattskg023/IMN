@@ -1,6 +1,6 @@
 body {
-  background-color: black; /* standaard zwart */
-  color: red; /* alles wat blauw was → rood */
+  background-color: white; /* standaard wit */
+  color: white; /* tekst wit */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ header {
 }
 
 header a {
-  color: red; /* links rood */
+  color: white; 
   text-decoration: none;
 }
 
@@ -34,18 +34,26 @@ main {
 }
 
 .news-item {
-  background-color: #111;
+  background-color: #111; /* donkergrijs voor kopjes etc */
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
-  color: red;
+  color: white;
+}
+
+.news-item h3 {
+  color: #333; /* kopjes donkergrijs */
 }
 
 .submit-section {
-  background-color: black; /* wit → zwart */
+  background-color: #111; /* donkere secties zwart/zwart blijft */
   padding: 20px;
   border-radius: 10px;
   margin: 20px 0;
+}
+
+.submit-section h2 {
+  color: #333; /* kopjes donkergrijs */
 }
 
 .submit-section input,
@@ -55,13 +63,13 @@ main {
   margin: 8px 0;
   border-radius: 5px;
   border: 1px solid #444;
-  background: black; /* white → black */
-  color: red; /* text red */
+  background: #111;
+  color: white;
 }
 
 .submit-section button {
   background-color: red;
-  color: black;
+  color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -69,7 +77,7 @@ main {
 }
 
 #suggestion-box {
-  background-color: black;
+  background-color: #111;
   padding: 20px;
   border-radius: 10px;
 }
@@ -77,8 +85,8 @@ main {
 #suggestion-box textarea {
   width: 100%;
   padding: 10px;
-  background: black; /* wit → zwart */
-  color: red; /* tekst rood */
+  background: #111;
+  color: white;
   border-radius: 5px;
   border: 1px solid #444;
 }
@@ -88,7 +96,7 @@ footer {
   justify-content: space-between;
   padding: 15px;
   background-color: #111;
-  color: red;
+  color: white;
 }
 
 .hidden {
