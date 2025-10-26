@@ -1,207 +1,88 @@
-/* General */
 body {
+  background-color: black;
+  color: red; /* alles wat eerder blauw was wordt rood */
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f4f4f4;
+  padding: 0;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1da1f2;
-  color: white;
-  padding: 15px 20px;
+  padding: 20px;
+  background-color: #111;
 }
 
-.header-left h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.header-left p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.header-right input {
-  padding: 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-  border: none;
-}
-
-.header-right button {
-  padding: 5px 10px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #fff;
-  color: #1da1f2;
-  font-weight: bold;
-}
-
-.header-right button:hover {
-  background-color: #e0e0e0;
-}
-
-/* Main Sections */
-main {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 0 15px;
-}
-
-section {
-  background-color: #fff;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Inputs & Textareas */
-input[type="text"], input[type="email"], textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  background-color: #1da1f2;
-  color: white;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: #0d8ddb;
-}
-
-/* Comments */
-.comment {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.likeBtn, .dislikeBtn {
-  cursor: pointer;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.likeBtn {
-  color: #1da1f2;
-}
-
-.likeBtn.liked {
-  color: #ff4500;
-}
-
-.dislikeBtn {
-  color: #888;
-}
-
-.dislikeBtn.disliked {
-  color: #ff0000;
-}
-
-/* Footer */
-footer {
-  display: flex;
-  justify-content: space-between;
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  font-size: 12px;
-}
-
-footer a {
-  color: white;
-  margin-left: 10px;
+header a {
+  color: red; /* links rood */
   text-decoration: none;
 }
 
-footer a:hover {
-  text-decoration: underline;
-}
-.submit-section {
-  background-color: #111;
-  color: #f5f5f5;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  margin: 60px auto;
-  max-width: 600px;
-}
-
-.submit-section h2 {
-  text-align: center;
-  font-size: 26px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.submit-section .description {
-  text-align: center;
-  color: #ccc;
-  margin-bottom: 25px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background: #1c1c1c;
-  color: #eee;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.submit-btn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #ff3333;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 10px;
+.top-right button {
+  font-size: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  margin-right: 15px;
 }
 
-.submit-btn:hover {
-  background: #cc0000;
+main {
+  padding: 20px;
 }
 
-#statusMsg {
-  text-align: center;
-  margin-top: 15px;
-  color: #00ff99;
-  font-weight: bold;
+.submit-section {
+  background-color: #111; /* zwart i.p.v. wit */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.submit-section input,
+.submit-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: black; /* standaard zwart */
+  color: red; /* tekst rood */
+}
+
+.submit-section button {
+  background-color: red;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#suggestion-box {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#suggestion-box textarea {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: red;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #111;
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+a {
+  color: red;
 }
