@@ -1,12 +1,12 @@
-// Dark/Light mode toggle: wit/zwart voor alles wat wit is
+// Dark/Light mode toggle: white/black for backround
 const toggleBtn = document.getElementById('toggle-theme');
 toggleBtn.addEventListener('click', () => {
   const body = document.body;
   if (body.style.backgroundColor === 'black') {
-    body.style.backgroundColor = 'white'; // wit
-    body.style.color = 'red'; // tekst rood blijft rood
+    body.style.backgroundColor = 'white'; // white
+    body.style.color = 'red'; // text stays red
   } else {
-    body.style.backgroundColor = 'black'; // terug naar zwart
+    body.style.backgroundColor = 'black'; // black
     body.style.color = 'red';
   }
 });
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Privacy Policy show/hide
+// Privacy Policy toggle
 const privacyLink = document.querySelectorAll('#privacy, .privacy-link');
 const privacySection = document.getElementById('privacy-section');
 
@@ -45,4 +45,3 @@ privacyLink.forEach(link => {
     privacySection.scrollIntoView({ behavior: 'smooth' });
   });
 });
-
