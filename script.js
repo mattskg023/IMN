@@ -1,16 +1,3 @@
-// Dark/Light mode toggle: white/black for backround
-const toggleBtn = document.getElementById('toggle-theme');
-toggleBtn.addEventListener('click', () => {
-  const body = document.body;
-  if (body.style.backgroundColor === 'black') {
-    body.style.backgroundColor = 'white'; // white
-    body.style.color = 'red'; // text stays red
-  } else {
-    body.style.backgroundColor = 'black'; // black
-    body.style.color = 'red';
-  }
-});
-
 // Formspree Submit a Topic
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById('topicForm');
